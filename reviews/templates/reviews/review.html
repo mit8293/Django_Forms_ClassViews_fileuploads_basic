@@ -1,0 +1,28 @@
+{% extends 'reviews/base.html' %}
+
+{% block title %}Your Review{% endblock title %}
+{% block content %}
+
+    <form action="" method="POST">
+        {% csrf_token %} 
+        {% comment %} csrf tokens are unique security tokens which are sent with post request for our access only. {% endcomment %}
+        {% comment %} <label for="username">Your Name</label>
+        <input id='username' name ='username' type="text"> {% endcomment %}
+        <div class="form-control {% if form.user_name.errors %}errors{% endif %}">
+            {{ form.user_name.label_tag }}
+            {{ form.user_name }}
+            {{ form.user_name.errors}}
+        </div>
+        <div class="form-control {% if form.review_text.errors %}errors{% endif %}">
+            {{ form.review_text.label_tag }}
+            {{ form.review_text }}
+            {{ form.review_text.errors}}
+        </div>
+        <div class="form-control {% if form.rating.errors %}errors{% endif %}">
+            {{ form.rating.label_tag }}
+            {{ form.rating }}
+            {{ form.rating.errors}}
+        </div>
+        <button type="submit">Send</button>
+    </form>
+{% endblock content %}
